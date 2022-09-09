@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -19,4 +21,8 @@ public class UserEntity {
     private String email;
     private String password;
     private String action;
+    @ManyToMany
+    private List<VideoEntity> likedVideos = new ArrayList<>();
+    @ManyToMany
+    private List<VideoEntity> dislikedVidoes = new ArrayList<>();
 }

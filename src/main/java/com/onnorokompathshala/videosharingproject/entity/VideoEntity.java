@@ -14,6 +14,11 @@ public class VideoEntity {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "video_id")
     private long id;
+    private String description;
     private String url;
+    private long likeCount;
+    private long dislikeCount;
     private long viewCount;
+    @ManyToOne
+    private UserEntity userEntity;
 }
