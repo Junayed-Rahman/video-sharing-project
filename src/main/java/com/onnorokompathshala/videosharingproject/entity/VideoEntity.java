@@ -4,19 +4,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "users")
+@Table(name = "vidoes")
 @Data
 @NoArgsConstructor
-public class UserEntity {
+public class VideoEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "user_id")
+    @Column(name = "video_id")
     private long id;
-    private String name;
-    private String email;
-    private String password;
-    private String action;
+    private String url;
+    private long viewCount;
 }
