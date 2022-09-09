@@ -15,10 +15,7 @@ public class UserEntity {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "user_id")
     private long id;
-    @NotBlank(message = "Name can't be blank")
     private String name;
-    @NotBlank(message = "Email can't be blank")
     private String email;
-    @NotBlank(message = "Email can't be blank")
     private String password;
 }
