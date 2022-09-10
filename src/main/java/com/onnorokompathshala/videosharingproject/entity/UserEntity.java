@@ -28,6 +28,7 @@ public class UserEntity {
     @NotEmpty
     @Size(min = 4, max = 12, message = "Password must be between 4 characters to 12 characters")
     private String password;
+    @Column(table = "user_video_actions")
     private String action;
     @Column(table = "user_video_actions")
     @ManyToMany
