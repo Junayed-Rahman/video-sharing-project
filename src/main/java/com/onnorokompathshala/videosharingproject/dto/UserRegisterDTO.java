@@ -6,6 +6,7 @@ import javax.validation.constraints.Size;
 
 public class UserRegisterDTO {
 
+    @NotEmpty(message = "Name can not be empty !!")
     private String name;
     @NotEmpty
     @Email(message = "Email address is not valid !!")
