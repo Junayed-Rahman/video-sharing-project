@@ -1,7 +1,9 @@
 package com.onnorokompathshala.videosharingproject.entity;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 import javax.persistence.*;
@@ -13,7 +15,8 @@ import java.util.HashSet;
 @Entity
 @Table(name = "vidoes")
 //@SecondaryTable(name="user_video_actions")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class VideoEntity {
     @Id
@@ -29,11 +32,24 @@ public class VideoEntity {
     private long viewCount;
 
     @ManyToOne()
-    private UserEntity userEntity;
+    @JoinColumn(name = "user_id", nullable = false, updatable = false)
+    private UserEntity user;
 
     @ManyToMany(mappedBy = "likedVideos")
     private Collection<UserEntity> users = new HashSet<>();
 
     @ManyToMany(mappedBy = "dislikedVideos")
     private Collection<UserEntity> userList = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "VideoEntity{" +
+                "videoId=" + videoId +
+                ", description='" + description + '\'' +
+                ", url='" + url + '\'' +
+                ", likeCount=" + likeCount +
+                ", dislikeCount=" + dislikeCount +
+                ", viewCount=" + viewCount +
+                '}';
+    }
 }

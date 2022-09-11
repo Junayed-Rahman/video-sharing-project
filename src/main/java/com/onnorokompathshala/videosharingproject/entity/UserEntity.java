@@ -1,7 +1,9 @@
 package com.onnorokompathshala.videosharingproject.entity;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -13,7 +15,8 @@ import java.util.HashSet;
 @Entity
 @Table(name = "users")
 @SecondaryTable(name="user_video_actions")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class UserEntity {
     @Id
@@ -28,11 +31,7 @@ public class UserEntity {
     @Size(min = 4, max = 12, message = "Password must be between 4 characters to 12 characters")
     private String password;
 
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "user_upload_video",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "video_id"))
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY,mappedBy = "user")
     private Collection<VideoEntity> uploadedVideos = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
@@ -48,4 +47,14 @@ public class UserEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "video_id"))
     private Collection<VideoEntity> dislikedVideos = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
